@@ -1,8 +1,5 @@
-*.o 
-*.ko 
-*.mod.c
-.*.cmd 
-*.markers 
-*.order 
-*.symvers
-README.md
+*
+
+!*.c
+!*.cpp
+!Makefile
