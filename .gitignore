@@ -4,3 +4,5 @@
 !*.cpp
 !Makefile
 !.gitignore
+
+*.mod.c
