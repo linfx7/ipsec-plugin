@@ -5,6 +5,13 @@
 
 #define IPTRANS(addr) ((unsigned char *)(addr))[0], ((unsigned char *)(addr))[1], ((unsigned char *)(addr))[2], ((unsigned char *)(addr))[3]  
 
+#define NF_IP_PRE_ROUTING	0
+#define NF_IP_LOCAL_IN		1
+#define NF_IP_FORWARD		2
+#define NF_IP_LOCAL_OUT		3
+#define NF_IP_POST_ROUTING	4
+#define NF_IP_NUMHOOKS		5
+
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("linfx7");
 MODULE_DESCRIPTION("IPsec packet notification");
