@@ -1,3 +1,3 @@
 # ipsec-plugin
 
-Plugin for IPsec unhandleable packets.
+StrongSwan plugin to handle unknown packets.
