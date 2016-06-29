@@ -3,14 +3,14 @@
 #include <linux/netfilter.h>
 #include <linux/netfilter_ipv4.h>
 
-#define IPTRANS(addr) ((unsigned char *)(addr))[0], ((unsigned char *)(addr))[1], ((unsigned char *)(addr))[2], ((unsigned char *)(addr))[3]  
+#define IPTRANS(addr) ((unsigned char*)(addr))[0], ((unsigned char*)(addr))[1], ((unsigned char*)(addr))[2], ((unsigned char*)(addr))[3]
 
-#define NF_IP_PRE_ROUTING	0
-#define NF_IP_LOCAL_IN		1
-#define NF_IP_FORWARD		2
-#define NF_IP_LOCAL_OUT		3
-#define NF_IP_POST_ROUTING	4
-#define NF_IP_NUMHOOKS		5
+#define NF_IP_PRE_ROUTING 0
+#define NF_IP_LOCAL_IN 1
+#define NF_IP_FORWARD 2
+#define NF_IP_LOCAL_OUT 3
+#define NF_IP_POST_ROUTING 4
+#define NF_IP_NUMHOOKS 5
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("linfx7");
@@ -20,14 +20,13 @@ static struct nf_hook_ops in_nfho; //net filter hook option struct
 static struct nf_hook_ops out_nfho; //net filter hook option struct
 
 unsigned int notification_hook(unsigned int hooknum,
-        struct sk_buff* skb,
-        const struct net_device* in,
-        const struct net_device* out,
-        int (*okfn)(struct sk_buff*))
+                               struct sk_buff* skb,
+                               const struct net_device* in,
+                               const struct net_device* out,
+                               int (*okfn)(struct sk_buff*))
 {
     unsigned char* iphdr = skb_network_header(skb);
-    if (iphdr)
-    {
+    if (iphdr) {
         printk("[>] Packet from %d.%d.%d.%d to %d.%d.%d.%d.\n", IPTRANS(iphdr + 12), IPTRANS(iphdr + 16));
     }
     return NF_ACCEPT;
