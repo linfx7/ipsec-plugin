@@ -16,15 +16,6 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("linfx7");
 MODULE_DESCRIPTION("IPsec packet notification");
 
-// enum {
-//     NF_IP_PRE_ROUTING,
-//     NF_IP_LOCAL_IN,
-//     NF_IP_FORWARD,
-//     NF_IP_LOCAL_OUT,
-//     NF_IP_POST_ROUTING,
-//     NF_IP_NUMHOOKS
-// };
-
 static struct nf_hook_ops in_nfho; //net filter hook option struct
 static struct nf_hook_ops out_nfho; //net filter hook option struct
 
@@ -61,7 +52,6 @@ static void init_filter_if(void)
     nf_register_hook(&out_nfho);
 }
 
-// 
 static int notification_init(void)
 {
     printk(KERN_INFO "[+] Install IPsec Notification module!\n");
