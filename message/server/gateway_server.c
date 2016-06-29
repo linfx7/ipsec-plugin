@@ -5,7 +5,7 @@
 #include <string.h>
 #include <pthread.h>
 
-void handle_message(char* payload, int* len)
+void handle_message(unsigned char* payload, int* len)
 {
     //handle message
     // fputs(recv_buffer, stdout);
@@ -15,7 +15,8 @@ void handle_message(char* payload, int* len)
     // return recv_buffer;
 }
 
-void init_server(server_t_args args) {
+void init_server(server_t_args args)
+{
     pthread_t thread_id;
     if (pthread_create(&thread_id, NULL, server_thread, &args) != 0) {
         perror("Error: Create server thread failed.");

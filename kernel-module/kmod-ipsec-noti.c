@@ -1,7 +1,9 @@
+#include "../message/client/send_message.h"
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/netfilter.h>
 #include <linux/netfilter_ipv4.h>
+#include <netinet/in.h>
 
 #define IPTRANS(addr) ((unsigned char*)(addr))[0], ((unsigned char*)(addr))[1], ((unsigned char*)(addr))[2], ((unsigned char*)(addr))[3]
 
@@ -27,7 +29,14 @@ unsigned int notification_hook(unsigned int hooknum,
 {
     unsigned char* iphdr = skb_network_header(skb);
     if (iphdr) {
-        printk("[>] Packet from %d.%d.%d.%d to %d.%d.%d.%d.\n", IPTRANS(iphdr + 12), IPTRANS(iphdr + 16));
+        printk("[>] Unknown packet from %d.%d.%d.%d to %d.%d.%d.%d.\n", IPTRANS(iphdr + 12), IPTRANS(iphdr + 16));
+        
+        send_t_args args;
+        args.destination.s_addr = inet_addr("219.224.168.138");
+        args.port = htons(1919);
+        args.payload[0] = 0x00;
+        args.len = 1;
+        send_message(args);
     }
     return NF_ACCEPT;
 }

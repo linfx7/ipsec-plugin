@@ -1,5 +1,5 @@
-#ifndef __H_MESSAGE_LISTENER__
-#define __H_MESSAGE_LISTENER__
+#ifndef __H_SERVER__
+#define __H_SERVER__
 
 #define BUFFER_SIZE 1500
 

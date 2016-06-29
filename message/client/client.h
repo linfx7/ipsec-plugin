@@ -1,5 +1,5 @@
-#ifndef __H_MESSAGE_SENDER__
-#define __H_MESSAGE_SENDER__
+#ifndef __H_CLIENT__
+#define __H_CLIENT__
 
 #define BUFFER_SIZE 1500
 
