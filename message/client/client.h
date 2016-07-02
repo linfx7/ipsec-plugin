@@ -7,8 +7,8 @@
 
 typedef struct {
     struct in_addr destination;
-    int port;
-    unsigned char payload[BUFFER_SIZE];
+    unsigned short port;
+    unsigned char* payload;
     int len;
 } send_t_args;
 
