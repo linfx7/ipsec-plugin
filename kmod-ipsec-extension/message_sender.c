@@ -21,7 +21,6 @@ void send_message(struct socket* sock, unsigned char* src, unsigned char* dst)
     // event type
     msg->payload[7] = 0x80;
     memcpy(msg->payload+8, src, 8);
-    kfree(src);
     struct socket_msg* rtn = socket_send(sock, msg);
     // printk("return: %d\t", rtn->len);
     // printk("%d %d %d\t", rtn->payload[0], rtn->payload[1], rtn->payload[2]);
