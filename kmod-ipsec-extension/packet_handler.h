@@ -8,7 +8,6 @@
                       ((unsigned char*)(addr))[2], \
                       ((unsigned char*)(addr))[3]
 
-void handle_packet(struct socket*, unsigned char*);
-int not_controller(unsigned char*);
+int handle_packet(struct socket*, unsigned char*);
 
 #endif

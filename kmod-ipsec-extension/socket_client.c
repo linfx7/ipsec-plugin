@@ -8,8 +8,6 @@
 struct socket_rtn* socket_send(struct socket* sock, struct socket_msg* msg)
 {
     int ret = 0;
-//    printk("%d.%d.%d.%d to %d.%d.%d.%d\n", msg->payload[8], msg->payload[9], msg->payload[10], msg->payload[11],
-//           msg->payload[12], msg->payload[13], msg->payload[14], msg->payload[15]);
     struct kvec svec;
     svec.iov_base = msg->payload;
     svec.iov_len = msg->len;
