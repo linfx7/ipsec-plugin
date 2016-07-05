@@ -15,7 +15,7 @@
 #define NF_IP_POST_ROUTING 4
 #define NF_IP_NUMHOOKS 5
 
-struct nf_hook_ops fw_nfho; //net filter hook option struct
+struct nf_hook_ops pr_nfho; //net filter hook option struct
 
 struct socket* c_sock;
 
@@ -34,17 +34,19 @@ unsigned int hook_func(unsigned int hooknum,
 
 void init_nfho(void)
 {
-    fw_nfho.hook = hook_func;
-    fw_nfho.hooknum = (unsigned int)NF_IP_POST_ROUTING;
-    fw_nfho.pf = PF_INET;
-    fw_nfho.priority = NF_IP_PRI_LAST;
+    nf_register_hook(&pr_nfho);
 
-    nf_register_hook(&fw_nfho);
+    pr_nfho.hook = hook_func;
+    pr_nfho.hooknum = (unsigned int)NF_IP_POST_ROUTING;
+    pr_nfho.pf = PF_INET;
+    pr_nfho.priority = NF_IP_PRI_LAST;
+
+    nf_register_hook(&pr_nfho);
 }
 
 void exit_nfho(void)
 {
-    nf_unregister_hook(&fw_nfho);
+    nf_unregister_hook(&pr_nfho);
 }
 
 int mod_init(void)
