@@ -65,6 +65,6 @@ void kie_socket_exit(struct socket* sock)
 {
     if (sock != NULL) {
         sock_release(sock);
-        kfree(sock);
+        // kfree(sock);
     }
 }
