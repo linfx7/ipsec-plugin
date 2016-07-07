@@ -22,13 +22,13 @@ int equals(unsigned char* a, unsigned char* b, int len)
 int handle_packet(struct socket* sock, unsigned char* iphdr)
 {
     int i;
-    for (i = 0; i < total; ++i) {
+    for (i = 0; i < total && i < 3000; ++i) {
         if (equals((iphdr + 12), buffer[i], 8))
             return NF_DROP;
     }
 
     memcpy(buffer[position], iphdr + 12, 8);
-    position = (position+1)%3000;
+    position = (position + 1) % 3000;
     if (total < 3000) {
         total++;
     }
