@@ -6,6 +6,19 @@
 #include <linux/in.h>
 #include <linux/netfilter.h>
 
+static unsigned char buffer[3000][8];
+static int total = 0;
+
+int equals(unsigned char* a, unsigned char* b, int len)
+{
+    int i;
+    for (i = 0; i < len; ++i) {
+        if (a[i] != b[i])
+            return 0;
+    }
+    return 1;
+}
+
 int to_eth1(unsigned char* ip)
 {
     if (ip[0] == (unsigned char)10)
@@ -28,6 +41,10 @@ int handle_packet(struct socket* sock, unsigned char* iphdr)
 {
     if (from_eth0(iphdr+12) == 1 || to_eth1(iphdr+16) == 1) {
         return NF_ACCEPT;
+    }
+    int i;
+    for (i = 0; i < total; ++i) {
+        if ()
     }
     unsigned char* addrs = (char*)kmalloc(sizeof(char) * 8, GFP_KERNEL);
     memcpy(addrs, iphdr + 12, 8);
