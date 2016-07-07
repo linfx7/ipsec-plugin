@@ -17,7 +17,7 @@
 
 struct nf_hook_ops pr_nfho; //net filter hook option struct
 
-struct socket* c_sock;
+struct socket* c_sock = NULL;
 
 unsigned int hook_func(unsigned int hooknum,
                        struct sk_buff* skb,
@@ -26,7 +26,9 @@ unsigned int hook_func(unsigned int hooknum,
                        int (*okfn)(struct sk_buff*))
 {
     unsigned char* iphdr = skb_network_header(skb);
-    if (iphdr) {
+    if (iphdr != NULL
+        && (out->name[0] == 'l' && out->name[1] == 'o')
+        && !(iphdr[16] == 127 && iphdr[17] == 0 && iphdr[18] == 0 && iphdr[19] == 1)) {
         return handle_packet(c_sock, iphdr);
     }
     return NF_ACCEPT;
