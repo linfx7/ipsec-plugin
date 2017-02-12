@@ -1,6 +1,6 @@
 # don't use this
 
-use [linfx7/kernel](https://github.com/linfx7/kernel) and [linfx7/userspace](https://github.com/linfx7/userspace) instead
+use [linfx7/sdig-kernel](https://github.com/linfx7/sdig-kernel) and [linfx7/sdig-userspace](https://github.com/linfx7/sdig-userspace) instead
 
 # ipsec-plugin
 
